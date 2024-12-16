@@ -1,9 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Xaml.Behaviors;
 
-namespace SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF.Custom
+namespace MRE.WPF.Custom
 {
     public class TreeViewSelectedItemBehavior : Behavior<TreeView>
     {
@@ -29,6 +30,7 @@ namespace SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF.Custom
             if (AssociatedObject != null)
             {
                 AssociatedObject.SelectedItemChanged += OnTreeViewSelectedItemChanged;
+                Console.WriteLine("TreeViewSelectedItemBehavior attached.");
             }
         }
 
@@ -37,6 +39,7 @@ namespace SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF.Custom
             if (AssociatedObject != null)
             {
                 AssociatedObject.SelectedItemChanged -= OnTreeViewSelectedItemChanged;
+                Console.WriteLine("TreeViewSelectedItemBehavior detached.");
             }
 
             base.OnDetaching();
@@ -45,6 +48,7 @@ namespace SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF.Custom
         private void OnTreeViewSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             SelectedItem = e.NewValue;
+            Console.WriteLine($"TreeView SelectedItem changed to: {SelectedItem}");
         }
 
         private static void OnSelectedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -54,11 +58,11 @@ namespace SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF.Custom
                 var treeView = behavior.AssociatedObject;
                 var newSelectedItem = e.NewValue;
 
+                Console.WriteLine($"DependencyProperty SelectedItem changed to: {newSelectedItem}");
+
                 if (newSelectedItem != null)
                 {
                     SelectAndFocusTreeViewItem(treeView, newSelectedItem);
-
-                    // Re-focus the tree view itself to ensure proper UI rendering
                     treeView.Focus();
                 }
             }
@@ -68,6 +72,8 @@ namespace SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF.Custom
         {
             if (treeView == null || itemToSelect == null)
                 return;
+
+            Console.WriteLine($"Attempting to select item: {itemToSelect}");
 
             foreach (var item in treeView.Items)
             {
@@ -79,28 +85,24 @@ namespace SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF.Custom
             }
         }
 
-
         private static bool SelectTreeViewItemRecursive(TreeViewItem treeViewItem, object itemToSelect)
         {
             if (treeViewItem == null)
                 return false;
 
+            Console.WriteLine($"Checking TreeViewItem: {treeViewItem.DataContext}");
+
             if (treeViewItem.DataContext == itemToSelect)
             {
+                Console.WriteLine($"TreeViewItem matched and selected: {itemToSelect}");
                 treeViewItem.IsSelected = true;
-                treeViewItem.Focus(); // Set focus to ensure the blue background
+                treeViewItem.Focus();
                 treeViewItem.BringIntoView();
                 return true;
             }
 
-            treeViewItem.IsExpanded = true; // Ensure children are loaded
+            treeViewItem.IsExpanded = true;
             treeViewItem.ApplyTemplate();
-
-            var itemsPresenter = (ItemsPresenter)treeViewItem.Template.FindName("ItemsHost", treeViewItem);
-            if (itemsPresenter != null)
-            {
-                itemsPresenter.ApplyTemplate();
-            }
 
             var itemsHostPanel = (Panel)VisualTreeHelper.GetChild(treeViewItem, 0);
             if (itemsHostPanel != null)

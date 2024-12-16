@@ -1,5 +1,4 @@
-﻿// File: Program.fs or appropriate module file
-module SubModelSelectedItemRecursive.DynamicBindings.MRE.Core.Program
+﻿module Program
 
 open System
 open Elmish.WPF

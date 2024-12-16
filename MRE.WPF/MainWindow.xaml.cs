@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF;
+namespace MRE.WPF;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SubModelSelectedItemRecursive.DynamicBindings.MRE.Core", "SubModelSelectedItemRecursive.DynamicBindings.MRE.Core\SubModelSelectedItemRecursive.DynamicBindings.MRE.Core.fsproj", "{A9F0B3E5-2542-4DCE-943E-6DEE461021B1}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MRE.Core", "MRE.Core\MRE.Core.fsproj", "{A9F0B3E5-2542-4DCE-943E-6DEE461021B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF", "SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF\SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF.csproj", "{3FFC026E-89A9-4626-B675-077BC352363C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRE.WPF", "MRE.WPF\MRE.WPF.csproj", "{3FFC026E-89A9-4626-B675-077BC352363C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

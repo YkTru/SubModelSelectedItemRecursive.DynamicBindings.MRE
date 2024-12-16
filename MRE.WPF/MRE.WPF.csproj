@@ -15,9 +15,9 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
   </ItemGroup>
 
-
   <ItemGroup>
-    <ProjectReference Include="..\SubModelSelectedItemRecursive.DynamicBindings.MRE.Core\SubModelSelectedItemRecursive.DynamicBindings.MRE.Core.fsproj" />
+    <ProjectReference Include="..\MRE.Core\MRE.Core.fsproj" />
   </ItemGroup>
+
 
 </Project>

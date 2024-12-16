@@ -1,7 +1,6 @@
 ﻿using System.Windows;
-using SubModelSelectedItemRecursive.DynamicBindings.MRE.Core;
 
-namespace SubModelSelectedItemRecursive.DynamicBindings.MRE.WPF
+namespace MRE.WPF
 {
     public partial class App : Application
     {
