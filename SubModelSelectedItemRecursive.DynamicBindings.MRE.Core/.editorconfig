@@ -1,0 +1,32 @@
+#• install       : https://fsprojects.github.io/fantomas/docs/end-users/GettingStarted.html
+#• Fantomas Tool : https://fsprojects.github.io/fantomas-tools/#/fantomas/preview
+[*.{fs,fsx}]
+#* [fixed]
+fsharp_multiline_bracket_style = aligned #bracket alignment for records
+fsharp_keep_max_number_of_blank_lines = 3
+fsharp_insert_final_newline = false
+
+#* [revisable]
+max_line_length = 100
+fsharp_experimental_elmish = true
+
+#max
+fsharp_max_record_number_of_items = 1
+fsharp_max_record_width = 100
+fsharp_max_array_or_list_number_of_items = 1
+fsharp_max_array_or_list_width = 100
+
+fsharp_max_value_binding_width = 100
+fsharp_max_function_binding_width = 100
+fsharp_max_dot_get_expression_width = 100
+
+fsharp_max_infix_operator_expression = 100
+
+#======================================
+
+#* [to experiment with]
+fsharp_record_multiline_formatter = number_of_items
+fsharp_multi_line_lambda_closing_newline = true
+
+#max
+fsharp_max_if_then_else_short_width = 100
