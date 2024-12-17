@@ -41,7 +41,7 @@ module App =
 
             aux [] children |> List.toArray |> Array.toList
 
-        /// **Moved `findItemById` here to make it accessible within `App` module**
+   
         let rec findItemById (id: Guid) (t: TreeItem) : TreeItem option =
             if t.Id = id then Some t else t.Children |> List.tryPick (findItemById id)
 
