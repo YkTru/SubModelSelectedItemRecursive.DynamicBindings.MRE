@@ -97,7 +97,6 @@ module App =
     type Model =
         { Tree: TreeItem
           SelectedItem: Guid option
-          FocusedItem: Guid option
           SelectedItemLogMessage: string }
 
     type Msg =
@@ -109,7 +108,6 @@ module App =
     let init () =
         { Tree = Mock.buildMockTree ()
           SelectedItem = None
-          FocusedItem = None
           SelectedItemLogMessage = "No Item Selected" },
         Cmd.none
 
@@ -124,7 +122,6 @@ module App =
 
         { model with
             SelectedItem = idOpt
-            FocusedItem = idOpt // WPF TreeView: Also set the focused item
             SelectedItemLogMessage = logMsg }
 
     let update msg model : Model * Cmd<Msg> =
@@ -155,8 +152,7 @@ module App =
                         model.Tree
 
                 { model with
-                    Tree = updatedTree
-                    FocusedItem = Some id }, // Focus item in the model
+                    Tree = updatedTree}, // Focus item in the model
                 Cmd.ofMsg (SelectItem(Some id)) // Ensure item is re-selected
 
         | MoveDown ->
@@ -170,8 +166,7 @@ module App =
                         model.Tree
 
                 { model with
-                    Tree = updatedTree
-                    FocusedItem = Some id }, // Focus item in the model
+                    Tree = updatedTree}, // Focus item in the model
                 Cmd.ofMsg (SelectItem(Some id)) // Ensure item is re-selected
 
 
@@ -237,9 +232,6 @@ module Bindings =
               (fun m -> m.SelectedItem),
               (fun idOpt _ -> SelectItem idOpt)
           )
-
-
-          "FocusedItem" |> Binding.oneWay (fun m -> m.FocusedItem) // Pass the focused item to the behavior
 
 
           "SelectedItemData"

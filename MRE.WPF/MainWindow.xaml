@@ -82,7 +82,7 @@
 
         <ListView
             Grid.Row="2"
-            ItemsSource="{Binding Tree}"
+            ItemsSource="{Binding TopChildren}"
             SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <HierarchicalDataTemplate
