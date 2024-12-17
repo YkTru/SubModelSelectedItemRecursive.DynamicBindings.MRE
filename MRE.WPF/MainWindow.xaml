@@ -21,6 +21,8 @@
                 Height="Auto" />
             <RowDefinition
                 Height="*" />
+            <RowDefinition
+                Height="Auto" />
         </Grid.RowDefinitions>
 
         <!--  Selected Item Log  -->
@@ -34,10 +36,10 @@
 
 
             <TextBox
-                HorizontalAlignment="Left"
-                FontSize="12"
                 MinWidth="80"
                 Margin="10,2,10,10"
+                HorizontalAlignment="Left"
+                FontSize="12"
                 Text="{Binding SelectedItemData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Button
@@ -77,6 +79,23 @@
             </b:Interaction.Behaviors>
         </TreeView>
 
+
+        <ListView
+            Grid.Row="2"
+            ItemsSource="{Binding TopChildren[0].Children[0].Children}"
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <HierarchicalDataTemplate
+                    ItemsSource="{Binding Children}">
+                    <StackPanel
+                        Margin="10,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Data}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
 
     </Grid>

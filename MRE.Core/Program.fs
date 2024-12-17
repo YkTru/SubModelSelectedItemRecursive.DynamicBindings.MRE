@@ -71,15 +71,28 @@ module App =
 
         module Mock =
 
-            let withChildren children item = { item with Children = children }
-
-            /// Builds the static tree structure
             let buildMockTree () =
-                let level2 = [ create "1.1.1"; create "1.1.2"; create "1.1.3" ]
-                let level1 = [ create "1.1" |> withChildren level2; create "2.1" ]
-                let level0 = [ create "1" |> withChildren level1; create "2"; create "3" ]
-                create "Root" |> withChildren level0
+                let node111 = { Id = Guid.NewGuid(); Data = "1.1.1"; Children = [] }
+                let node112 = { Id = Guid.NewGuid(); Data = "1.1.2"; Children = [] }
+                let node113 = { Id = Guid.NewGuid(); Data = "1.1.3"; Children = [] }
+                let node11 = { Id = Guid.NewGuid(); Data = "1.1"; Children = [ node111; node112; node113 ] }
+                
+                let node12 = { Id = Guid.NewGuid(); Data = "1.2"; Children = [] }
+        
+                let node1 = { Id = Guid.NewGuid(); Data = "1"; Children = [ node11; node12 ] }
+                
+                let node2111 = { Id = Guid.NewGuid(); Data = "2.1.1.1"; Children = [] }
+                let node21 = { Id = Guid.NewGuid(); Data = "2.1"; Children = [ node2111 ] }
+                let node2 = { Id = Guid.NewGuid(); Data = "2"; Children = [ node21 ] }
+                
+                let node3 = { Id = Guid.NewGuid(); Data = "3"; Children = [] }
+                
+                { Id = Guid.NewGuid()
+                  Data = "Root"
+                  Children = [ node1; node2; node3 ] }
+        
 
+                 
 
     type Model =
         { Tree: TreeItem
